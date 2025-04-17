@@ -1,0 +1,32 @@
+{
+    "pt-BR": {
+        "save_profile_button": "Salvar perfil de mods atuais",
+        "load_profile_button": "Carregar perfil de mods",
+        "save_profile_window_title": "Salvar perfil de mods",
+        "load_profile_window_title": "Carregar perfil de mods",
+        "load_button": "Carregar",
+        "save_profile_title": "Salvar perfil de mods",
+        "profile_name_placeholder": "Nome do perfil",
+        "save_button": "Salvar",
+        "success": "Sucesso",
+        "profile_saved": "Perfil salvo com sucesso",
+        "profile_loaded": "Perfil carregado com sucesso",
+        "error": "Erro",
+        "profile_name_empty": "O nome do perfil não pode estar vazio"
+    },
+    "en-US": {
+        "save_profile_button": "Save current mods profile",
+        "load_profile_button": "Load mods profile",
+        "save_profile_window_title": "Save mods profile",
+        "load_profile_window_title": "Load mods profile",
+        "load_button": "Load",
+        "save_profile_title": "Save mods profile",
+        "profile_name_placeholder": "Profile name",
+        "save_button": "Save",
+        "success": "Success",
+        "profile_saved": "Profile saved successfully",
+        "profile_loaded": "Profile loaded successfully",
+        "error": "Error",
+        "profile_name_empty": "Profile name cannot be empty"
+    }
+}
