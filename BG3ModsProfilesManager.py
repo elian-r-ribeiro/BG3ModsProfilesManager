@@ -5,11 +5,12 @@ import json;
 
 userDir = os.environ["USERPROFILE"];
 baseDir = os.path.dirname(os.path.abspath(__file__))
-profilesDir = os.path.join(baseDir, "SavedProfiles");
+profilesDir = os.path.join(
+        userDir, "appData", "Local", "Larian Studios", "Baldur's Gate 3", "SavedModsProfiles"
+);
 modSettingsPath = os.path.join(
         userDir, "appData", "Local", "Larian Studios", "Baldur's Gate 3", "PlayerProfiles", "Public", "modsettings.lsx"
 );
-
 global language
 language = "pt-BR"
 
@@ -84,7 +85,11 @@ def loadProfileInterface(window):
     centerFrame = ctk.CTkFrame(newWindow, fg_color="transparent")
     centerFrame.place(relx=0.5, rely=0.45, anchor="center")
     
-    combo = ctk.CTkComboBox(centerFrame, values=os.listdir(profilesDir));
+    if(os.listdir(profilesDir) == []):
+        combo = ctk.CTkComboBox(centerFrame, values=[locale["no_profile_yet"]]);
+    else:
+        combo = ctk.CTkComboBox(centerFrame, values=os.listdir(profilesDir));
+    
     combo.configure(state="readonly")
     combo.pack(pady=40);
     
@@ -122,6 +127,11 @@ def saveCurrentModsProfile(profileName):
         shutil.copy(modSettingsPath, profilesDir + "/" + profileName + ".lsx");
         showMessage(locale["success"], locale["profile_saved"])
     
+def createProfilesFolder():
+    if not os.path.exists(profilesDir):
+        os.makedirs(profilesDir);
+
 if __name__ == "__main__":
     
+    createProfilesFolder();
     mainInterfaceLoop()

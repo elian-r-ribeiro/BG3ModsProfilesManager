@@ -12,7 +12,8 @@
         "profile_saved": "Perfil salvo com sucesso",
         "profile_loaded": "Perfil carregado com sucesso",
         "error": "Erro",
-        "profile_name_empty": "O nome do perfil não pode estar vazio"
+        "profile_name_empty": "O nome do perfil não pode estar vazio",
+        "no_profile_yet": "Nenhum perfil ainda"
     },
     "en-US": {
         "save_profile_button": "Save current mods profile",
@@ -27,6 +28,7 @@
         "profile_saved": "Profile saved successfully",
         "profile_loaded": "Profile loaded successfully",
         "error": "Error",
-        "profile_name_empty": "Profile name cannot be empty"
+        "profile_name_empty": "Profile name cannot be empty",
+        "no_profile_yet": "No profile yet"
     }
 }
