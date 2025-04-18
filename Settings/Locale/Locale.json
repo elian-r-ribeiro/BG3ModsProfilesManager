@@ -15,7 +15,8 @@
         "profile_name_empty": "O nome do perfil não pode estar vazio",
         "no_profile_yet": "Nenhum perfil ainda",
         "delete_button": "Deletar",
-        "profile_deleted": "Perfil deletado com sucesso"
+        "profile_deleted": "Perfil deletado com sucesso",
+        "game_running": "Feche o jogo para carregar um perfil"
     },
     "en-US": {
         "save_profile_button": "Save current mods profile",
@@ -33,6 +34,7 @@
         "profile_name_empty": "Profile name cannot be empty",
         "no_profile_yet": "No profile yet",
         "delete_button": "Delete",
-        "profile_deleted": "Profile deleted successfully"
+        "profile_deleted": "Profile deleted successfully",
+        "game_running": "Close the game to load a profile"
     }
 }

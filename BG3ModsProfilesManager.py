@@ -2,6 +2,7 @@ import os;
 import shutil;
 import customtkinter as ctk;
 import json;
+import psutil;
 
 userDir = os.environ["USERPROFILE"];
 baseDir = os.path.dirname(os.path.abspath(__file__))
@@ -103,8 +104,20 @@ def loadProfileInterface(window):
     deleteButton.pack(pady=2);
     
 def loadModsProfile(profileName):
-    shutil.copy(profilesDir + "/" + profileName + ".lsx", modSettingsPath);
-    showMessage(locale["success"], locale["profile_loaded"])
+    if(isGameRunning()):
+        showMessage(locale["error"], locale["game_running"])
+    else:
+        shutil.copy(profilesDir + "/" + profileName + ".lsx", modSettingsPath);
+        showMessage(locale["success"], locale["profile_loaded"])
+    
+def isGameRunning():
+    for proc in psutil.process_iter(['name']):
+        try:
+            if "bg3.exe" in proc.info['name'].lower() or "bg3_dx11.exe" in proc.info['name'].lower():
+                return True
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
+            continue
+    return False
     
 def deleteModsProfiles(profileName, combo):
     os.remove(os.path.join(profilesDir, profileName + ".lsx"))
