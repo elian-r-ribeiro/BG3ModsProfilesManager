@@ -19,7 +19,8 @@ def showMessage(title, message, parent=None):
     msgWindow.title(title)
     msgWindow.geometry("300x150")
     msgWindow.transient(parent)
-    msgWindow.grab_set()  # bloqueia interação com outras janelas
+    msgWindow.grab_set()
+    addFooterLabel(msgWindow)
 
     frame = ctk.CTkFrame(msgWindow, fg_color="transparent")
     frame.place(relx=0.5, rely=0.5, anchor="center")
@@ -54,6 +55,7 @@ def mainInterfaceLoop():
     window = ctk.CTk();
     window.title("BG3 Mods Profiles Manager")
     window.geometry("400x300");
+    addFooterLabel(window);
     
     centerFrame = ctk.CTkFrame(window, fg_color="transparent")
     centerFrame.place(relx=0.5, rely=0.45, anchor="center") 
@@ -81,6 +83,7 @@ def loadProfileInterface(window):
     newWindow.grab_set()
     
     newWindow.transient(window);
+    addFooterLabel(newWindow);
     
     centerFrame = ctk.CTkFrame(newWindow, fg_color="transparent", width=400, height=300)
     centerFrame.place(relx=0.5, rely=0.45, anchor="center")
@@ -96,16 +99,24 @@ def loadProfileInterface(window):
     loadButton = ctk.CTkButton(centerFrame, text=locale["load_button"], command=lambda: loadModsProfile(combo.get().replace(".lsx", "")));
     loadButton.pack(pady=2);
     
-    deleteButton = ctk.CTkButton(centerFrame, text=locale["delete_button"], command=lambda: deleteModsProfiles(combo.get().replace(".lsx", "")));
+    deleteButton = ctk.CTkButton(centerFrame, text=locale["delete_button"], command=lambda: deleteModsProfiles(combo.get().replace(".lsx", ""), combo));
     deleteButton.pack(pady=2);
     
 def loadModsProfile(profileName):
     shutil.copy(profilesDir + "/" + profileName + ".lsx", modSettingsPath);
     showMessage(locale["success"], locale["profile_loaded"])
     
-def deleteModsProfiles(profileName):
-    os.remove(profilesDir + "/" + profileName + ".lsx");
+def deleteModsProfiles(profileName, combo):
+    os.remove(os.path.join(profilesDir, profileName + ".lsx"))
     showMessage(locale["success"], locale["profile_deleted"])
+
+    profiles = os.listdir(profilesDir)
+    if not profiles:
+        combo.configure(values=[locale["no_profile_yet"]])
+        combo.set(locale["no_profile_yet"])
+    else:
+        combo.configure(values=profiles)
+        combo.set(profiles[0])
 
 def saveProfileInterface(window):
     locale = loadLocale(language);
@@ -116,6 +127,7 @@ def saveProfileInterface(window):
     newWindow.grab_set()
     
     newWindow.transient(window);
+    addFooterLabel(newWindow);
     
     centerFrame = ctk.CTkFrame(newWindow, fg_color="transparent")
     centerFrame.place(relx=0.5, rely=0.45, anchor="center")
@@ -133,6 +145,10 @@ def saveCurrentModsProfile(profileName):
     else:
         shutil.copy(modSettingsPath, profilesDir + "/" + profileName + ".lsx");
         showMessage(locale["success"], locale["profile_saved"])
+    
+def addFooterLabel(window):
+    footer = ctk.CTkLabel(window, text="by Lobo", font=ctk.CTkFont(size=10))
+    footer.place(relx=1.0, rely=1.0, anchor="se", x=-5, y=-5)
     
 def createProfilesFolder():
     if not os.path.exists(profilesDir):
