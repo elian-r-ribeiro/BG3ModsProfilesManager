@@ -82,7 +82,7 @@ def loadProfileInterface(window):
     
     newWindow.transient(window);
     
-    centerFrame = ctk.CTkFrame(newWindow, fg_color="transparent")
+    centerFrame = ctk.CTkFrame(newWindow, fg_color="transparent", width=400, height=300)
     centerFrame.place(relx=0.5, rely=0.45, anchor="center")
     
     if(os.listdir(profilesDir) == []):
@@ -91,14 +91,21 @@ def loadProfileInterface(window):
         combo = ctk.CTkComboBox(centerFrame, values=os.listdir(profilesDir));
     
     combo.configure(state="readonly")
-    combo.pack(pady=40);
+    combo.pack(pady=2);
     
     loadButton = ctk.CTkButton(centerFrame, text=locale["load_button"], command=lambda: loadModsProfile(combo.get().replace(".lsx", "")));
-    loadButton.place(relx=0.5, rely=0.85, anchor="center");
+    loadButton.pack(pady=2);
+    
+    deleteButton = ctk.CTkButton(centerFrame, text=locale["delete_button"], command=lambda: deleteModsProfiles(combo.get().replace(".lsx", "")));
+    deleteButton.pack(pady=2);
     
 def loadModsProfile(profileName):
     shutil.copy(profilesDir + "/" + profileName + ".lsx", modSettingsPath);
     showMessage(locale["success"], locale["profile_loaded"])
+    
+def deleteModsProfiles(profileName):
+    os.remove(profilesDir + "/" + profileName + ".lsx");
+    showMessage(locale["success"], locale["profile_deleted"])
 
 def saveProfileInterface(window):
     locale = loadLocale(language);
@@ -114,10 +121,10 @@ def saveProfileInterface(window):
     centerFrame.place(relx=0.5, rely=0.45, anchor="center")
     
     entry = ctk.CTkEntry(centerFrame, placeholder_text=locale["profile_name_placeholder"], width=200);
-    entry.pack(pady=40);
+    entry.pack(pady=2);
     
     saveButton = ctk.CTkButton(centerFrame, text=locale["save_button"], command=lambda: saveCurrentModsProfile(entry.get()));
-    saveButton.place(relx=0.5, rely=0.85, anchor="center");
+    saveButton.pack(pady=2);
     
 def saveCurrentModsProfile(profileName):
     if not profileName:

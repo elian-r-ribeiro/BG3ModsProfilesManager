@@ -13,7 +13,9 @@
         "profile_loaded": "Perfil carregado com sucesso",
         "error": "Erro",
         "profile_name_empty": "O nome do perfil não pode estar vazio",
-        "no_profile_yet": "Nenhum perfil ainda"
+        "no_profile_yet": "Nenhum perfil ainda",
+        "delete_button": "Deletar",
+        "profile_deleted": "Perfil deletado com sucesso"
     },
     "en-US": {
         "save_profile_button": "Save current mods profile",
@@ -29,6 +31,8 @@
         "profile_loaded": "Profile loaded successfully",
         "error": "Error",
         "profile_name_empty": "Profile name cannot be empty",
-        "no_profile_yet": "No profile yet"
+        "no_profile_yet": "No profile yet",
+        "delete_button": "Delete",
+        "profile_deleted": "Profile deleted successfully"
     }
 }
